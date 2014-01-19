@@ -1,0 +1,22 @@
+<explorertypes>
+    <explorertype name="nanolaba" key="fileicon.nanolaba"
+                  icon="nanolaba.test.png" reference="xmlcontent">
+        <newresource page="" info="desc.nanolaba"
+                     uri="newresource.jsp?page=nanolaba" order="1000"
+                     autosetnavigation="false" autosettitle="false"/>
+        <accesscontrol>
+            <accessentry principal="ROLE.WORKPLACE_USER" permissions="+r+v+w+c"/>
+        </accesscontrol>
+    </explorertype>
+    <explorertype name="nanolaba.test" key="fileicon.nanolaba.test"
+                  icon="nanolaba.test.png" reference="xmlcontent">
+        <newresource page="nanolaba"
+                     uri="newresource_xmlcontent.jsp?newresourcetype=nanolaba.test"
+                     order="1" autosetnavigation="false" autosettitle="false"
+                     info="desc.nanolaba.test"/>
+        <accesscontrol>
+            <accessentry principal="ROLE.WORKPLACE_USER" permissions="+r+v+w+c"/>
+        </accesscontrol>
+    </explorertype>
+
+</explorertypes>

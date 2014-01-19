@@ -5,11 +5,11 @@
             <property>
                 <name>template-elements</name>
                 <value type="shared">
-                    <![CDATA[/system/modules/ru.sudexpa.modules.sudexpa.templates/pages/nanolaba.test.jsp]]>
+                    <![CDATA[/system/modules/com.nanolaba.opencms.modules.test/pages/nanolaba.test.jsp]]>
                 </value>
             </property>
         </properties>
-        <param name="schema">/system/modules/ru.sudexpa.modules.sudexpa.templates/schemas/nanolaba.test.xsd</param>
+        <param name="schema">/system/modules/com.nanolaba.opencms.modules.test/schemas/nanolaba.test.xsd</param>
     </type>
 
 </resourcetypes>

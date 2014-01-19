@@ -4,7 +4,7 @@
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<cms:include property="template" element="header"/>
+<%--<cms:include property="template" element="header"/>--%>
 
 <cms:contentload collector="singleFile" param="%(opencms.uri)" editable="auto">
 	<cms:contentaccess var="content"/>
@@ -12,4 +12,4 @@
 	test
 </cms:contentload>
 
-<cms:include property="template" element="footer"/>
+<%--<cms:include property="template" element="footer"/>--%>

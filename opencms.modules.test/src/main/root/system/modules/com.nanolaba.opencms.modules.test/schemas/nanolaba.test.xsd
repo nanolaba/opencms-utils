@@ -1,7 +1,6 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
 
     <xsd:include schemaLocation="opencms://opencms-xmlcontent.xsd"/>
-    <xsd:include schemaLocation="opencms://system/modules/ru.sudexpa.modules.main/schemas/nested/image.xsd"/>
 
 
     <xsd:element name="NanolabaTests" type="OpenCmsNanolabaTests"/>
@@ -15,6 +14,7 @@
     <xsd:complexType name="OpenCmsNanolabaTest">
         <xsd:sequence>
             <xsd:element name="name" type="OpenCmsString"/>
+            <xsd:element name="category" type="OpenCmsString"/>
         </xsd:sequence>
         <xsd:attribute name="language" type="OpenCmsLocale" use="optional"/>
     </xsd:complexType>
@@ -29,7 +29,7 @@
             </mappings>
 
             <layouts>
-                <!--<layout element="expert" widget="ru.sudexpa.modules.sudexpa.templates.widgets.ExpertCombo" configuration="nullable:false"/>-->
+                <layout element="category" widget="com.nanolaba.opencms9.ExtendedCategoryWidget"/>
             </layouts>
 
             <validationrules>
@@ -37,7 +37,7 @@
             </validationrules>
             <defaults/>
             <relations>
-                <relation element="jsp" type="strong" invalidate="false"/>
+                <!--<relation element="jsp" type="strong" invalidate="false"/>-->
             </relations>
             <tabs>
                 <!--<tab element="name" name="mainInfo" collapse="false"/>-->

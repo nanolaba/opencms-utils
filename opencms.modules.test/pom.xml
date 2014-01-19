@@ -1,17 +1,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>opencms-utils-test</artifactId>
-    <name>opencms-utils-test</name>
-    <version>${sudexpa.templates.version}</version>
+    <artifactId>opencms.modules.test</artifactId>
+    <name>opencms.modules.test</name>
+    <version>${opencms.modules.test.version}</version>
     <packaging>jar</packaging>
-    <description>Шаблоны для сайта sudexpa.ru</description>
 
     <parent>
         <groupId>com.nanolaba</groupId>
         <artifactId>opencms-utils-parent</artifactId>
         <version>1.0.0</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <properties>
@@ -19,7 +17,6 @@
     </properties>
 
     <dependencies>
-
         <dependency>
             <artifactId>opencms-utils</artifactId>
             <groupId>com.nanolaba</groupId>
@@ -216,19 +213,6 @@
                         </configuration>
                         <goals>
                             <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-clean-plugin</artifactId>
-                <version>2.4</version>
-                <executions>
-                    <execution>
-                        <id>auto-clean</id>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>clean</goal>
                         </goals>
                     </execution>
                 </executions>
