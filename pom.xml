@@ -15,7 +15,7 @@
     </modules>
 
     <properties>
-        <opencms-utils.version>0.0.1</opencms-utils.version>
+        <opencms-utils.version>0.0.2</opencms-utils.version>
         <opencms.modules.test.version>0.0.1</opencms.modules.test.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
