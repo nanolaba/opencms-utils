@@ -1,0 +1,137 @@
+<project default="all">
+
+    <property name="file.resourcetypes"
+              value="/${project.build.directory}/../src/main/opencmsconfig/resourcetypes.xml"/>
+    <property name="file.explorertypes"
+              value="/${project.build.directory}/../src/main/opencmsconfig/explorertypes.xml"/>
+
+    <property name="flag.uuids" value="false"/>
+
+    <property name="folder.archives" value="${project.build.directory}"/>
+    <property name="folder.lib" value="${project.build.directory}/lib"/>
+    <property name="folder.bin" value="${project.build.directory}/classes"/>
+
+    <!--здесь нельзя указывать абсолютный путь - косяк в палгине для сборки-->
+    <!--<property name="folder.module" value="target/root"/>-->
+    <property name="folder.module" value="/${project.build.directory}/root"/>
+
+    <property name="module.info.creator" value="Admin"/>
+    <property name="module.info.opencmsversion" value="8.0.4"/>
+    <property name="module.info.project" value="Offline"/>
+    <property name="module.info.exportversion" value="6"/>
+    <property name="module.module.name" value="${project.groupId}.${project.artifactId}"/>
+    <property name="module.module.nicename" value="${project.description}"/>
+    <property name="module.module.group" value="${project.groupId}"/>
+    <property name="module.module.moduleclass" value="${project.groupId}.${project.artifactId}.ModuleListener"/>
+    <property name="module.module.moduledescription" value=""/>
+    <property name="module.module.version" value="${project.version}"/>
+    <property name="module.module.authorname" value=""/>
+    <property name="module.module.authoremail" value=""/>
+    <property name="module.module.userinstalled" value=""/>
+    <property name="module.module.dateinstalled" value=""/>
+
+    <path id="classpath.all">
+        <fileset dir="${project.build.directory}/lib"/>
+    </path>
+
+    <taskdef name="opencmsmanifest" classname="com.nanolaba.opencms.ant.task.ManifestBuilderTask">
+        <classpath refid="classpath.all"/>
+    </taskdef>
+
+    <target name="buildManifest">
+        <opencmsmanifest type="module"
+                         generateuuids="${flag.uuids}"
+                         distfolder="${folder.module}"
+                         srcfolder="target/root"
+                         resourcetypes="${file.resourcetypes}"
+                         explorertypes="${file.explorertypes}"
+                         creator="${module.info.creator}"
+                         opencmsversion="${module.info.opencmsversion}"
+                         project="${module.info.project}"
+                         exportversion="${module.info.exportversion}"
+                         name="${module.module.name}"
+                         nicename="${module.module.nicename}"
+                         group="${module.module.group}"
+                         moduleclass="${module.module.moduleclass}"
+                         moduledescription="${module.module.moduledescription}"
+                         version="${module.module.version}"
+                         authorname="${module.module.authorname}"
+                         authoremail="${module.module.authoremail}"
+                         userinstalled="${module.module.userinstalled}"
+                         dateinstalled="${module.module.dateinstalled}">
+
+            <exportpoint src="/system/modules/${module.module.name}/lib" dst="WEB-INF/lib"/>
+            <exportpoint src="/system/modules/${module.module.name}/classes" dst="WEB-INF/classes"/>
+            <exportpoint src="/system/modules/${module.module.name}/taglib" dst="WEB-INF"/>
+
+            <resource uri="/system/modules/${module.module.name}/"/>
+
+            <!-- <parameter name="nom" value='valeur'/> X rГ©pГ©titions possibles-->
+            <!-- <dependency name="nomdumodule" version="1"/> X rГ©pГ©titions possibles-->
+
+            <fileset dir="${folder.module}"
+                     excludes="**/__properties,**/__properties/**,**/__acl,**/__acl/**, **/Thumbs.db"/>
+        </opencmsmanifest>
+    </target>
+
+    <property name="file.zip" value="${folder.archives}/${module.module.name}_${module.module.version}.zip"/>
+    <property name="name.zip" value="${module.module.name}_${module.module.version}.zip"/>
+
+    <target name="all" depends="buildManifest">
+        <zip destfile="${file.zip}">
+            <zipfileset dir="${folder.module}" excludes="**/__properties/**,**/__acl/**"/>
+        </zip>
+    </target>
+
+
+    <!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+    <property file="../portal.properties"/>
+
+    <property name="opencms.username" value="Admin"/>
+    <property name="opencms.password" value="admin"/>
+    <macrodef name="opencms.shell">
+
+        <attribute name="shell.input.file" default="shell.input"/>
+        <text name="text"/>
+
+        <sequential>
+
+            <echo file="@{shell.input.file}">
+                @{text}
+            </echo>
+
+            <java classname="org.opencms.main.CmsShell" fork="true" input="@{shell.input.file}">
+                <classpath>
+                    <path refid="classpath.all"/>
+                    <pathelement path="${opencms.web_inf}/classes"/>
+                    <path>
+                        <fileset dir="${opencms.web_inf}/lib">
+                            <include name="*.jar"/>
+                        </fileset>
+                    </path>
+                </classpath>
+                <jvmarg value="-Xmx1024M"/>
+                <sysproperty key="file.encoding" value="UTF-8"/>
+                <arg value="-base=${opencms.web_inf}"/>
+                <arg value="-defaultWebApp=opencms"/>
+                <arg value="-servletMapping=opencms"/>
+            </java>
+
+            <delete file="@{shell.input.file}" quiet="true"/>
+
+        </sequential>
+
+    </macrodef>
+
+    <target name="install">
+        <copy file="${file.zip}" todir="${opencms.web_inf}/packages/modules/"/>
+
+        <opencms.shell>
+            login ${opencms.username} ${opencms.password}
+            replaceModule '${module.module.name}' '${opencms.web_inf}/packages/modules/${name.zip}'
+            exit
+        </opencms.shell>
+    </target>
+
+</project>

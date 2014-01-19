@@ -1,0 +1,15 @@
+<resourcetypes>
+
+    <type class="org.opencms.file.types.CmsResourceTypeXmlContent" name="nanolaba.test" id="1111">
+        <properties>
+            <property>
+                <name>template-elements</name>
+                <value type="shared">
+                    <![CDATA[/system/modules/ru.sudexpa.modules.sudexpa.templates/pages/nanolaba.test.jsp]]>
+                </value>
+            </property>
+        </properties>
+        <param name="schema">/system/modules/ru.sudexpa.modules.sudexpa.templates/schemas/nanolaba.test.xsd</param>
+    </type>
+
+</resourcetypes>

@@ -1,0 +1,52 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xsd:include schemaLocation="opencms://opencms-xmlcontent.xsd"/>
+    <xsd:include schemaLocation="opencms://system/modules/ru.sudexpa.modules.main/schemas/nested/image.xsd"/>
+
+
+    <xsd:element name="NanolabaTests" type="OpenCmsNanolabaTests"/>
+
+    <xsd:complexType name="OpenCmsNanolabaTests">
+        <xsd:sequence>
+            <xsd:element name="NanolabaTest" type="OpenCmsNanolabaTest" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="OpenCmsNanolabaTest">
+        <xsd:sequence>
+            <xsd:element name="name" type="OpenCmsString"/>
+        </xsd:sequence>
+        <xsd:attribute name="language" type="OpenCmsLocale" use="optional"/>
+    </xsd:complexType>
+
+    <xsd:annotation>
+        <xsd:appinfo>
+
+            <resourcebundle name="com.nanolaba.opencms.modules.test.workplace"/>
+
+            <mappings>
+                <mapping element="name" mapto="property:Title"/>
+            </mappings>
+
+            <layouts>
+                <!--<layout element="expert" widget="ru.sudexpa.modules.sudexpa.templates.widgets.ExpertCombo" configuration="nullable:false"/>-->
+            </layouts>
+
+            <validationrules>
+                <!--<rule element="jsp" regex=".+" type="error" message="${key.err.xmlcontent.jspFile.empty}"/>-->
+            </validationrules>
+            <defaults/>
+            <relations>
+                <relation element="jsp" type="strong" invalidate="false"/>
+            </relations>
+            <tabs>
+                <!--<tab element="name" name="mainInfo" collapse="false"/>-->
+                <!--<tab element="fulltext" name="fulltext" collapse="true"/>-->
+                <!--<tab element="breadcrumbs" collapse="true"/>-->
+                <!--<tab element="externalLinks" collapse="true"/>-->
+                <!--<tab element="jsp" collapse="true"/>-->
+            </tabs>
+        </xsd:appinfo>
+
+    </xsd:annotation>
+</xsd:schema>

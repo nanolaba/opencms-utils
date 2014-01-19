@@ -1,0 +1,11 @@
+<explorertypes>
+    <explorertype name="nanolaba" key="fileicon.nanolaba"
+                  icon="nanolaba.test.png" reference="xmlcontent">
+        <newresource page="" info="desc.sudexpa"
+                     uri="newresource.jsp?page=nanolaba.test" order="1000"
+                     autosetnavigation="false" autosettitle="false"/>
+        <accesscontrol>
+            <accessentry principal="ROLE.WORKPLACE_USER" permissions="+r+v+w+c"/>
+        </accesscontrol>
+    </explorertype>
+</explorertypes>
