@@ -15,8 +15,6 @@
     </modules>
 
     <properties>
-        <opencms-utils.version>0.0.2</opencms-utils.version>
-        <opencms.modules.test.version>0.0.1</opencms.modules.test.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <github.global.server>github</github.global.server>
@@ -109,7 +107,7 @@
         <dependency>
             <groupId>org.opencms</groupId>
             <artifactId>opencms-core</artifactId>
-            <version>9.0.0</version>
+            <version>9.0.1</version>
             <scope>provided</scope>
             <exclusions>
                 <exclusion>
@@ -134,6 +132,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
                 <configuration>
                     <source>1.6</source>
                     <target>1.6</target>
